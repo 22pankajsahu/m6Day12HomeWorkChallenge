@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Character Counter</title>
+    <meta name="author" content="PANKAJ SAHU">
+    <meta name="keywords" content="Character, add button, box, update, character counter, ">
+    <meta name="description" content="This is a simple web application that allows users to count the character whatever they are entered.">
+
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: salmon;
+            font-family: cursive;
+        }
+
+        .container {
+            background-color: lightpink;
+            width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .textarea {
+            width: 100%;
+            height: 100px;
+            font-size: 18px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 2px solid darkgray;
+            resize: none;
+            font-family: sans-serif;
+        }
+
+        .counter-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 5px;
+        }
+
+        .counter-container p {
+            font-size: 18px;
+            color: gray;
+        }
+
+        .total-counter {
+            color: slateblue;
+        }
+
+        .remaining-counter {
+            color: orangered;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Real-time Character Counter</h2>
+        <textarea id="textarea" class="textarea" placeholder="Please write your text here..." maxlength="50"></textarea>
+        <div class="counter-container">
+            <p>Total Characters: <span class="total-counter" id="total-counter"></span></p>
+            <p>Remaining: <span class="remaining-counter" id="remaining-counter"></span></p>
+        </div>
+    </div>
+    <script>
+        const textareaEl = document.getElementById("textarea");
+        const totalCounterEl = document.getElementById("total-counter");
+        const remainingCounterEl = document.getElementById("remaining-counter");
+
+        textareaEl.addEventListener("input", updateCounter);
+
+        function updateCounter() {
+            const maxLength = parseInt(textareaEl.getAttribute("maxlength"));
+            const currentLength = textareaEl.value.length;
+
+            totalCounterEl.textContent = currentLength;
+            remainingCounterEl.textContent = maxLength - currentLength;
+        }
+
+        updateCounter();
+    </script>
+</body>
+
+</html>
